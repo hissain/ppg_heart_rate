@@ -35,28 +35,20 @@ pip install -r requirements.txt
 
 ### ppg.py
 
-**PPGRespirationAnalyzer:** A class for analyzing PPG data.
-
-**_load_data:_** Loads PPG data from JSON or CSV files.
-**_preprocess_signal:_** Preprocesses the PPG signal by removing noise, filtering, and detrending.
-
-**_analyze_ppg:_** (Not fully shown) Analyzes the PPG signal to extract heart rate and respiration rate.
-
-### requirements.txt
-
-Lists the required Python libraries for the project.
+- **PPGRespirationAnalyzer:** A class for analyzing PPG data.
+- **load_data:** Loads PPG data from JSON or CSV files.
+- **preprocess_signal:** Preprocesses the PPG signal by removing noise, filtering, and detrending.
+- **analyze_ppg:** (Not fully shown) Analyzes the PPG signal to extract heart rate and respiration rate.
 
 ## Usage
-
 - **Generate and Save PPG Data:** Run the sample.py script to generate synthetic PPG data and save it to a file:
 - **Analyze PPG Data:** The script will analyze the generated data using the PPGRespirationAnalyzer class and display the results, including:
-* Heart rate (in beats per minute),
-* Respiration rate (in breaths per minute)
+    1. Heart rate (in beats per minute),
+    2. Respiration rate (in breaths per minute)
 
--**Visualize Results:** The analysis results will be plotted and saved as an image in the output directory.
+- **Visualize Results:** The analysis results will be plotted and saved as an image in the output directory.
 
 ## Output
-
 - **Generated Data:** Saved as output/sample_ppg_data.json.
 - **Analysis Results:** Saved as output/ppg_analysis_results.png.
 
