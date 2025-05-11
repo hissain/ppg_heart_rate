@@ -7,7 +7,7 @@ import argparse
 import json
 
 class PPGRespirationAnalyzer:
-    def __init__(self, sampling_rate=30):
+    def __init__(self, sampling_rate=30, limit=500):
         """
         Initialize the PPG respiration analyzer
         
@@ -17,6 +17,7 @@ class PPGRespirationAnalyzer:
             Sampling rate of the PPG signal in Hz (default: 30 Hz)
         """
         self.sampling_rate = sampling_rate
+        self.limit = limit
         
         # Configuration parameters
         self.window_size = 10 * sampling_rate  # 10 seconds of data
@@ -69,7 +70,7 @@ class PPGRespirationAnalyzer:
         if not np.all(np.diff(timestamps) >= 0):
             raise ValueError("Timestamps must be monotonically increasing")
             
-        return ppg_data, timestamps
+        return ppg_data[:self.limit], timestamps[:self.limit]
     
     def preprocess_signal(self, ppg_data):
         """
@@ -277,15 +278,19 @@ def main():
     parser.add_argument('--sampling-rate', type=float, default=30.0, help='Sampling rate in Hz (default: 30Hz)')
     parser.add_argument('--save-plot', action='store_true', help='Save plot to file')
     parser.add_argument('--output', default='ppg_analysis.png', help='Output file name for plot (default: ppg_analysis.png)')
-    
+    parser.add_argument('--limit', type=int, default=500, help='Number of initial values to plot (default: 500)')
+
     args = parser.parse_args()
     
     # Initialize analyzer
-    analyzer = PPGRespirationAnalyzer(sampling_rate=args.sampling_rate)
+    analyzer = PPGRespirationAnalyzer(sampling_rate=args.sampling_rate, limit=args.limit)
     
     try:
         # Load data
         ppg_data, timestamps = analyzer.load_data(args.file)
+
+        ppg_data = ppg_data[:args.limit]
+        timestamps = timestamps[:args.limit]
         
         # Analyze PPG data
         results = analyzer.analyze_ppg(ppg_data, timestamps)
