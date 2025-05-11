@@ -6,7 +6,7 @@ This project demonstrates the generation, processing, and analysis of synthetic 
 
 ![Example for dummy ppg data](output/ppg_analysis_results.png)
 
-## Graph for dummy data
+## Graph for real data (mimic PERform PPG)
 
 ![Example for real ppg data](output/real_data_analysis.png)
 
