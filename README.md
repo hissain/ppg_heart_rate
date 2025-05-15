@@ -6,9 +6,14 @@ This project demonstrates the generation, processing, and analysis of synthetic 
 
 ![Example for dummy ppg data](output/ppg_analysis_results.png)
 
-## Graph for real data (mimic PERform PPG)
+## Graph for real data (mimic PERform PPG) for naive algorithm
 
 ![Example for real ppg data](output/real_data_analysis.png)
+
+## Graph for real data (mimic PERform PPG) for advance algorithm
+Look into the python/ppg_respiration_rate.py file for detail
+
+![Example for real ppg data](output/ppg_analysis.png)
 
 ### About datasets:
 
@@ -52,6 +57,9 @@ pip install -r requirements.txt
 - **load_data:** Loads PPG data from JSON or CSV files.
 - **preprocess_signal:** Preprocesses the PPG signal by removing noise, filtering, and detrending.
 - **analyze_ppg:** (Not fully shown) Analyzes the PPG signal to extract heart rate and respiration rate.
+
+### ppg_respiration_rate.py
+
 
 ## Usage
 

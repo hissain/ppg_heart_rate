@@ -1,3 +1,19 @@
+# This script estimates the respiration rate from a PPG signal using three methods:
+# 1. Amplitude Modulation (AM)
+# 2. Baseline Wander (BW)
+# 3. Frequency Modulation (FM)
+# It combines the results from these methods to provide a final estimate of the respiration rate.
+# The script also includes a function to visualize the results.
+# The PPG signal is assumed to be in a CSV file with the first column as time and the second as the PPG values.
+# The script uses the following libraries:
+# - numpy
+# - scipy
+# - matplotlib
+
+# Copyright (c) 2023 Md. Sazzad Hissain Khan
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the Apache License 2.0.
+
 import numpy as np
 import scipy.signal as signal
 import matplotlib.pyplot as plt
@@ -68,6 +84,7 @@ def estimate_rr_combined(ppg, fs):
     axs[0, 1].text(0.1, 0.5, f"Estimated RR (Combined): {rr_combined:.2f} bpm", fontsize=14)
 
     plt.tight_layout()
+    plt.savefig("output/ppg_analysis.png")
     plt.show()
 
     return {
@@ -78,7 +95,9 @@ def estimate_rr_combined(ppg, fs):
     }
 
 # Example:
-# ppg = np.loadtxt('your_ppg_data.txt')  # Load your signal here
-# fs = 100  # Sampling frequency in Hz
-# rr_results = estimate_rr_combined(ppg, fs)
-# print(rr_results)
+ppg = np.loadtxt('exp/dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv', delimiter=',', skiprows=1, usecols=1)
+fs = 125  # Sampling frequency in Hz
+print(f"PPG signal length: {len(ppg)}")
+print(f"First 100 PPG signal: {ppg[:100]}")
+rr_results = estimate_rr_combined(ppg[:10000], fs) # Limit to first 10000 samples for testing
+print(rr_results)
