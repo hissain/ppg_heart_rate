@@ -8,9 +8,16 @@ This project demonstrates the generation, processing, and analysis of synthetic 
 
 ## Graph for real data (mimic PERform PPG) for naive algorithm
 
+Example call
+
+```
+python/ppg_basic.py exp/dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv --sampling-rate 125 --limit 10000
+```
+
 ![Example for real ppg data](output/real_data_analysis.png)
 
 ## Graph for real data (mimic PERform PPG) for advance algorithm
+
 Look into the python/ppg_respiration_rate.py file for detail
 
 ![Example for real ppg data](output/ppg_analysis.png)
@@ -43,38 +50,6 @@ pip install -r requirements.txt
 - **scipy:** For signal processing.
 - **pandas:** For handling data files.
 
-## File Descriptions
-
-### sample.py
-
-- **generate_sample_data:** Generates synthetic PPG data with configurable duration and sampling rate.
-- **save_sample_data:** Saves the generated PPG data and timestamps to a JSON file.
-- **main:** Orchestrates the data generation, saving, analysis, and visualization.
-
-### ppg.py
-
-- **PPGRespirationAnalyzer:** A class for analyzing PPG data.
-- **load_data:** Loads PPG data from JSON or CSV files.
-- **preprocess_signal:** Preprocesses the PPG signal by removing noise, filtering, and detrending.
-- **analyze_ppg:** (Not fully shown) Analyzes the PPG signal to extract heart rate and respiration rate.
-
-### ppg_respiration_rate.py
-
-
-## Usage
-
-- **Generate and Save PPG Data:** Run the sample.py script to generate synthetic PPG data and save it to a file:
-- **Analyze PPG Data:** The script will analyze the generated data using the PPGRespirationAnalyzer class and display the results, including:
-
-  1. Heart rate (in beats per minute),
-  2. Respiration rate (in breaths per minute)
-- **Visualize Results:** The analysis results will be plotted and saved as an image in the output directory.
-
-## Output
-
-- **Generated Data:** Saved as output/sample_ppg_data.json.
-- **Analysis Results:** Saved as output/ppg_analysis_results.png.
-
 ## Example Results
 
 Below is an example of the results obtained from analyzing synthetic PPG data:
@@ -84,11 +59,6 @@ Heart Rate: 72 bpm
 Respiration Rate: 15 breaths/min
 ```
 
-## Notes
-
-The synthetic data generation simulates realistic PPG signals but may not fully represent real-world data.
-Ensure the output directory exists before running the script to avoid file-saving errors.
-
 ## License
 
-This project is for demonstration purposes and is provided under an open-source license.
+This project is for demonstration purposes and is provided under an Apache 2.0 license.

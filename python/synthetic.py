@@ -1,3 +1,7 @@
+#Copyright (c) 2025, Md. Sazzad Hissain Khan
+#All rights reserved.
+# This source code is licensed under the Apache 2.0 License
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import butter, filtfilt
@@ -43,10 +47,11 @@ fs = 100  # Sampling frequency in Hz
 t, ppg = simulate_ppg(duration_sec=30, fs=fs, heart_rate_bpm=72, resp_rate_bpm=14, noise_std=0.02, motion=True)
 
 plt.figure(figsize=(12, 4))
-plt.plot(t, ppg, label="Simulated PPG")
+plt.plot(t, ppg, label="Simulated PPG data", color='blue')
 plt.xlabel("Time (s)")
-plt.ylabel("PPG Signal")
+plt.ylabel("Synthetoc PPG Signal")
 plt.title("Simulated Raw PPG Signal (with respiration, noise, and motion artifact)")
 plt.grid(True)
 plt.tight_layout()
+plt.savefig("output/simulated_ppg.png")
 plt.show()

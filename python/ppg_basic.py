@@ -275,10 +275,10 @@ class PPGRespirationAnalyzer:
 def main():
     parser = argparse.ArgumentParser(description='PPG Respiration Rate Analysis Tool')
     parser.add_argument('file', help='Path to PPG data file (CSV or JSON)')
-    parser.add_argument('--sampling-rate', type=float, default=30.0, help='Sampling rate in Hz (default: 30Hz)')
-    parser.add_argument('--save-plot', action='store_true', help='Save plot to file')
-    parser.add_argument('--output', default='ppg_analysis.png', help='Output file name for plot (default: ppg_analysis.png)')
-    parser.add_argument('--limit', type=int, default=500, help='Number of initial values to plot (default: 500)')
+    parser.add_argument('--sampling-rate', type=float, default=125.0, help='Sampling rate in Hz (default: 30Hz)')
+    parser.add_argument('--save-plot', action='store_true', default=True, help='Save plot to file')
+    parser.add_argument('--output', default='output/ppg_analysis.png', help='Output file name for plot (default: ppg_analysis.png)')
+    parser.add_argument('--limit', type=int, default=10000, help='Number of initial values to plot (default: 10000)')
 
     args = parser.parse_args()
     
@@ -320,4 +320,4 @@ def main():
     return 0
 
 if __name__ == "__main__":
-    exit(main())
+    main()
