@@ -95,7 +95,7 @@ def estimate_rr_combined(ppg, fs):
     }
 
 # Example:
-ppg = np.loadtxt('exp/dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv', delimiter=',', skiprows=1, usecols=1)
+ppg = np.loadtxt('dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv', delimiter=',', skiprows=1, usecols=1)
 fs = 125  # Sampling frequency in Hz
 print(f"PPG signal length: {len(ppg)}")
 print(f"First 100 PPG signal: {ppg[:100]}")

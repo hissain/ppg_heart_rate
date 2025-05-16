@@ -11,7 +11,7 @@ This project demonstrates the generation, processing, and analysis of synthetic 
 Example call
 
 ```
-python/ppg_basic.py exp/dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv --sampling-rate 125 --limit 10000
+python/ppg_basic.py dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv --sampling-rate 125 --limit 10000
 ```
 
 ![Example for real ppg data](output/real_data_analysis.png)
@@ -49,6 +49,7 @@ pip install -r requirements.txt
 - **matplotlib:** For plotting and visualization.
 - **scipy:** For signal processing.
 - **pandas:** For handling data files.
+- **PyWavelets:** For handling wavelet manipulation.
 
 ## Example Results
 
