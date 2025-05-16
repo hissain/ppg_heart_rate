@@ -7,8 +7,11 @@ import pywt
 import os
 from sklearn.decomposition import FastICA
 
+
+OUTPUT_DIR = "output_best"
+
 # Create output directory if it doesn't exist
-os.makedirs("output", exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def butter_bandpass(lowcut, highcut, fs, order=4):
     """Design a bandpass Butterworth filter."""
@@ -510,7 +513,7 @@ def visualize_results(
                  ha='center', va='center', transform=ax11.transAxes)
     
     plt.tight_layout()
-    plt.savefig("output/ppg_analysis_comprehensive.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f"{OUTPUT_DIR}/ppg_analysis_comprehensive.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 def analyze_ppg_signal(file_path, fs=125, segment_length=120):
@@ -637,7 +640,7 @@ def visualize_time_series(data, fs, window_size=30, overlap=0.5):
     ax2.grid(True)
     
     plt.tight_layout()
-    plt.savefig("output/physiological_parameters_over_time.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f"{OUTPUT_DIR}/physiological_parameters_over_time.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 def wavelet_analysis(signal, fs):
@@ -678,7 +681,7 @@ def wavelet_analysis(signal, fs):
     plt.title('Original PPG Signal')
     
     plt.tight_layout()
-    plt.savefig("output/wavelet_analysis.png", dpi=300)
+    plt.savefig(f"{OUTPUT_DIR}/wavelet_analysis.png", dpi=300)
     plt.show()
     
     return coef, freqs_bpm
@@ -712,7 +715,7 @@ def phase_space_reconstruction(signal, delay=10, dimension=3):
         ax.set_zlabel('')
     
     ax.set_title(f'Phase Space Reconstruction (τ={delay}, dim={dimension})')
-    plt.savefig("output/phase_space_reconstruction.png", dpi=300)
+    plt.savefig(f"{OUTPUT_DIR}/phase_space_reconstruction.png", dpi=300)
     plt.show()
     
     return phase_space
@@ -782,7 +785,7 @@ def compute_signal_quality_index(ppg, fs):
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig("output/signal_quality_index.png", dpi=300)
+    plt.savefig(f"{OUTPUT_DIR}/signal_quality_index.png", dpi=300)
     plt.show()
     
     return np.mean(sqi_values), sqi_values
@@ -790,12 +793,12 @@ def compute_signal_quality_index(ppg, fs):
 # Example usage
 if __name__ == "__main__":
     # Set the file path
-    file_path = 'dataset/mimic_perform_non_af_csv/mimic_perform_non_af_003_data.csv'
-    
+    file_path = 'dataset/MAUS/MAUS/Data/Raw_data/002/inf_ppg.csv'
+
     # Load the data (adjust skiprows and usecols as needed)
     try:
-        ppg = np.loadtxt(file_path, delimiter=',', skiprows=1, usecols=1)
-        fs = 125  # Sampling frequency in Hz
+        ppg = np.loadtxt(file_path, delimiter=',', skiprows=1, usecols=0)
+        fs = 256  # Sampling frequency in Hz
         
         print(f"PPG signal length: {len(ppg)}")
         print(f"First 10 PPG values: {ppg[:10]}")
