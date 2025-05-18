@@ -158,9 +158,18 @@ def extract_features_with_ica(ppg, fs):
     # Extract different features
     peaks, _ = detect_peaks_advanced(ppg, fs)
     
+    if len(peaks) == 0:
+        # Handle case where no peaks are detected
+        print("No peaks detected in PPG signal.")
+        return None, None, None
+    
     # Amplitude modulation
     am_values = extract_am(ppg, peaks)
     t_am = peaks / fs
+    
+    if len(am_values) == 0 or len(t_am) == 0:
+        print("Amplitude modulation values or time points are empty.")
+        return None, None, None
     
     # Baseline wander
     bw_signal = extract_bw(ppg, fs)
@@ -793,12 +802,12 @@ def compute_signal_quality_index(ppg, fs):
 # Example usage
 if __name__ == "__main__":
     # Set the file path
-    file_path = 'dataset/MAUS/MAUS/Data/Raw_data/002/inf_ppg.csv'
+    file_path = '/Users/hissain/git/github/ppg_rr/dataset/mimic_perform_non_af_csv/mimic_perform_non_af_001_data.csv'
 
     # Load the data (adjust skiprows and usecols as needed)
     try:
         ppg = np.loadtxt(file_path, delimiter=',', skiprows=1, usecols=0)
-        fs = 256  # Sampling frequency in Hz
+        fs = 125  # Sampling frequency in Hz
         
         print(f"PPG signal length: {len(ppg)}")
         print(f"First 10 PPG values: {ppg[:10]}")
@@ -808,10 +817,11 @@ if __name__ == "__main__":
         data_subset = ppg[:int(segment_length * fs)]
         
         # If you want to process the entire recording:
-        # results = analyze_ppg_signal(file_path, fs)
+        #results = analyze_ppg_signal(file_path, fs)
         
         # For testing with a subset:
         results = estimate_rr_combined(data_subset, fs)
+
         print("\nRespiration Rate Results:")
         for key, value in results.items():
             if not key.startswith("Window"):
@@ -845,3 +855,4 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"Error: {e}")
+        raise e
